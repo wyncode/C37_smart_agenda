@@ -24,4 +24,26 @@ NOTE: Heroku specifically runs `npm start`, so don't remove that from your packa
 - `heroku config:set MONGODB_URL=<insertYourAtlasDbUri>`
 - `git push heroku master`
 
+############################################
+## Setup backend
+
+- install MongoDB
+- install Mongoose
+- install Express
+
+
+# Packages:
+
+Run backend and frontend at same time
+- install concurrently
+
+Validate strings 
+- install validator
+
+To encrypt passwords 
+- install bcryptjs
+
+Authorization
+- install jsonwebtoken
+
 
