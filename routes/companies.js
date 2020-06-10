@@ -115,7 +115,7 @@ router.post('/companies/logout', auth, async (req, res) => {
       return token.token !== req.token;
     });
     await req.company.save();
-    res.send(req.company);
+    res.send(req.company); 
   } catch (e) {
     res.status(500).send();
   }
