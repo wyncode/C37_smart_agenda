@@ -1,22 +1,41 @@
-import React, { createContext, useState } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
+import axios from 'axios';
 
-export const AppContext = createContext();
+const AppContext = createContext();
 
-export const AppContextProvider = ({ children }) => {
-  const [contextMessage, setContextMessage] = useState('');
+const AppContextProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  const contextMethod = () => {
-    setContextMessage('Hello from client/src/context/AppContext.jsx');
-  };
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if (token) {
+      axios
+        .get(`${process.env.MONGODB_URL}/companies/me`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        .then(({ data }) => {
+          console.log(data);
+          setUser(data);
+          setLoggedIn(true);
+        })
+        .catch((e) => console.log(e.message.toString()));
+    }
+  }, [token]);
 
   return (
     <AppContext.Provider
       value={{
-        contextMessage,
-        contextMethod
+        user,
+        setUser,
+        loggedIn,
+        setLoggedIn
       }}
     >
       {children}
     </AppContext.Provider>
   );
 };
+
+export { AppContext, AppContextProvider };
