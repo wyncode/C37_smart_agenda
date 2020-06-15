@@ -35,8 +35,12 @@ router.get('/customers/all/', auth, async (req, res) => {
     } catch (e) {
       res.status(500).send();
     }
-  }
-);
+  });
+  
+// getting a list of customers 
+
+  
+  
 // getting an specific customer by id
 
 router.get('/customers/:_id', auth, async (req, res) => {
