@@ -43,6 +43,13 @@ const customerSchema = new mongoose.Schema({
   },
 });
 
+// relation between appointment and customer 
+customerSchema.virtual('appointments', {
+  ref: 'Appointment',
+  localField: '_id',
+  foreignField: 'owner'
+})
+
 const Customer = mongoose.model('Customer', customerSchema);
 
 module.exports = Customer;
