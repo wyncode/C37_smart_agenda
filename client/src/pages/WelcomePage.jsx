@@ -8,7 +8,8 @@ const WelcomePage = () => {
   return (
     <div>
       <div>
-        <Welcome />
+        <h1>Smaprt Agenda</h1>
+        <button></button>
       </div>
     </div>
   );
