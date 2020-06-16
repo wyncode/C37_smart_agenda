@@ -7,7 +7,7 @@ const Customer = require('../models/customer_model');
 const companySchema = new mongoose.Schema({
   companyName: {
     type: String,
-    required: true,
+    required: false,
     trim: true
   },
   username: {
@@ -41,7 +41,7 @@ const companySchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: [true, 'User phone number required'],
+    required: [false, 'User phone number required'],
     trim: true,
     validate(value) {
       if (!validator.matches(value, /^\d{10}$/)) {
@@ -49,7 +49,7 @@ const companySchema = new mongoose.Schema({
       }
     }
   },
-  tokens: [ 
+  tokens: [
     {
       token: {
         type: String,
@@ -74,8 +74,6 @@ companySchema.methods.toJSON = function () {
   delete companyObject.avatar;
   return companyObject;
 };
-
-
 
 // Create relation between Company and Customer.
 companySchema.virtual('customers', {
