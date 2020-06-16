@@ -11,7 +11,7 @@ const Login = () => {
     e.preventDefault();
     await axios({
       method: 'POST',
-      url: `${process.env.MONGODB_URL}/companies/login`,
+      url: `http://localhost:8080/companies/login`,
       data: {
         email: email,
         password: password
