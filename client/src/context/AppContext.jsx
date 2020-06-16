@@ -12,7 +12,7 @@ const AppContextProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       axios
-        .get(`${process.env.MONGODB_URL}/companies/me`, {
+        .get(`http://localhost:8080/companies/me`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         .then(({ data }) => {
