@@ -1,6 +1,6 @@
 require('./db/mongoose');
 const express = require('express'),
-cors = require('cors');
+  cors = require('cors');
 
 const app = express();
 
@@ -18,9 +18,10 @@ app.use(express.json());
 //call routes
 const companyRouter = require('./routes/companies');
 const customerRouter = require ('./routes/customers')
+const appointmentRouter = require('./routes/appointments');
 app.use(companyRouter);
 app.use(customerRouter);
-
+app.use(appointmentRouter);
 
 
 if (process.env.NODE_ENV === 'production') {

@@ -46,4 +46,8 @@ To encrypt passwords
 Authorization
 - install jsonwebtoken
 
+To upload images
+- install multer
 
+To process and resize image
+- install sharp

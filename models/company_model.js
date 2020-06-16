@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Customer = require('../models/customer_model');
 
 const companySchema = new mongoose.Schema({
   companyName: {
@@ -11,7 +12,6 @@ const companySchema = new mongoose.Schema({
   },
   username: {
     type: String,
-    required: true,
     trim: true
   },
   password: {
@@ -60,7 +60,26 @@ const companySchema = new mongoose.Schema({
   services: {
     type: [String]
   },
-  calendar: []
+  avatar: {
+    type: Buffer
+  }
+});
+
+//Hidding private data
+companySchema.methods.toJSON = function () {
+  const company = this;
+  const companyObject = company.toObject();
+  delete companyObject.password;
+  delete companyObject.tokens;
+  delete companyObject.avatar;
+  return companyObject;
+};
+
+// Create relation between Company and Customer.
+companySchema.virtual('customers', {
+  ref: 'Customer',
+  localField: '_id',
+  foreignField: 'owner'
 });
 
 // Generate Auth Token

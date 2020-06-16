@@ -12,7 +12,7 @@ const Signup = () => {
     e.preventDefault();
     await axios({
       method: 'POST',
-      url: `${process.env.MONGODB_URL}/companies`,
+      url: `http://localhost:8080/companies`,
       data: {
         username,
         password,
