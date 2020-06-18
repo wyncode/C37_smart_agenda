@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
+
+
 import axios from 'axios';
 
 import './main.scss'
@@ -8,6 +10,15 @@ import './main.scss'
 const Calendar = () => {
  
   let [appointments, setAppointments] = useState([]);
+
+
+  render() {
+    return (
+      <div className="calendar-size">
+      <FullCalendar defaultView="dayGridMonth" plugins={[ dayGridPlugin ]} />
+      </div>
+    )
+  }
 
   useEffect(() => {
     axios.get('/appointments/company', {
