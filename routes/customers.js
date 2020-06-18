@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const router = new express.Router();
-
-const auth = require('../middleware/auth.js');
-const Company = require('../models/company_model');
+const { auth } = require('../middleware/auth.js');
 const Customer = require('../models/customer_model');
 
 // Creating a customer
@@ -36,8 +34,6 @@ router.get('/customers/all/', auth, async (req, res) => {
       res.status(500).send();
     }
   });
-  
-// getting a list of customers 
 
   
   

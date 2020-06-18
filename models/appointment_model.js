@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const appointmentSchema = new mongoose.Schema({
-    appointment:{
         date: {
           type: String,
           trim: true,
@@ -16,13 +15,16 @@ const appointmentSchema = new mongoose.Schema({
         service: {
             type: String,
             trim: true,
-            required: true
+            //required: true
         },
-        owner: {
+        customer: {
             type: mongoose.Schema.Types.ObjectID,
             ref: 'Customer'
+        },
+        company: {
+          type: mongoose.Schema.Types.ObjectID,
+          ref: 'Company' 
         }
-    }
 })
 
 const Appointment = mongoose.model('Appointment', appointmentSchema);
