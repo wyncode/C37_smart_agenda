@@ -51,3 +51,6 @@ To upload images
 
 To process and resize image
 - install sharp
+
+For styling
+- install react-bootstrap
