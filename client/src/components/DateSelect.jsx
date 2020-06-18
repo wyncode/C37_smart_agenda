@@ -20,6 +20,7 @@ const DateSelect = () => {
     getData();
   }, [id]);
 
+  //add dynamic change
   const owner = apiData.owner;
   const duration = apiData.duration;
   const date = apiData.date;

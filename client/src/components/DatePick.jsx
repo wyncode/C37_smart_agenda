@@ -9,7 +9,7 @@ const DatePick = () => {
       <DatePicker
         selected={startDate}
         onChange={(date) => setStartDate(date)}
-        minDate={new Date('06-10-2020')}
+        minDate={new Date('06-10-2020')} //dynamic change
         maxDate={new Date('06-26-2020')}
         inline
       />
