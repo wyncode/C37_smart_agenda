@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const mongoose = require('mongoose');
-const auth = require('../middleware/auth.js');
+const { auth } = require('../middleware/auth.js');
 const multer = require('multer');
 const sharp = require('sharp');
 const Company = require('../models/company_model');
@@ -25,26 +25,6 @@ router.get('/companies/me', auth, async (req, res) => {
   res.send(req.company);
 });
 
-// // getting an specific company by id
-
-// router.get('/companies/:_id', async (req, res) => {
-//   const { _id } = req.params;
-//   if (mongoose.Types.ObjectId.isValid(_id)) {
-//     try {
-//       const company = await Company.findById(_id);
-//       if (!company) {
-//         // The gotcha here is that this will only trigger if the
-//         // _id param sent is 12 bits (12 character string)
-//         return res.status(404).send();
-//       }
-//       res.send(company);
-//     } catch (e) {
-//       res.status(500).send();
-//     }
-//   } else {
-//     res.status(400).send('Not a valid company id');
-//   }
-// });
 
 //updating data's company
 
