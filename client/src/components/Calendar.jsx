@@ -26,7 +26,8 @@ const Calendar = () => {
     <div className="calendarStyle">
     <FullCalendar defaultView="dayGridMonth" plugins={[dayGridPlugin]}
     weekends={true}
-    events={appointmentView} />
+    events={appointmentView} 
+    handleWindowResize={true}/>
     </div>
   )
 }
