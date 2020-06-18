@@ -4,6 +4,8 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Calendar from './components/Calendar';
+import Map from './components/Map';
+import Contacts from './components/Contacts';
 
 import './App.css';
 
@@ -11,8 +13,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <AppContextProvider>
-        <Route exact path='/'>
+        <Route exact path="/">
           <Calendar />
+        </Route>
+        <Route exact path="/map">
+          <Map />
         </Route>
         <Route path="/login">
           <LoginPage />
