@@ -47,7 +47,7 @@ const customerSchema = new mongoose.Schema({
 customerSchema.virtual('appointments', {
   ref: 'Appointment',
   localField: '_id',
-  foreignField: 'owner'
+  foreignField: 'customer'
 })
 
 const Customer = mongoose.model('Customer', customerSchema);
