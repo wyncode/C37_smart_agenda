@@ -16,6 +16,9 @@ const App = () => {
         <Route exact path="/">
           <Calendar />
         </Route>
+        <Route exact path="/contacts">
+          <Contacts />
+        </Route>
         <Route exact path="/map">
           <Map />
         </Route>
