@@ -2,6 +2,7 @@
   "name": "final_project_template",
   "version": "1.0.0",
   "main": "index.js",
+  "proxy": "localhost:3000",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",

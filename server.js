@@ -10,6 +10,10 @@ const app = require('./app'),
   port = process.env.PORT || 8080,
   path = require('path');
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the backend');
+});
+
 app.listen(port, () => {
   console.log(`Express server is up on port ${port}`);
 });
