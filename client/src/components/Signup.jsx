@@ -24,12 +24,12 @@ const Signup = () => {
       .then(({ data }) => {
         console.log(data, 'response');
         setUser(data.user);
+        localStorage.setItem('token', data.token);
         setLoggedIn(true);
         setEmail('');
         setPassword('');
         setUsername('');
-        localStorage.setItem('token', data.token);
-        history.push("/");
+        history.push("/companies/me");
       })
       .catch((e) => console.log(e.message.toString()));
   };

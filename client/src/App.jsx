@@ -7,6 +7,8 @@ import Calendar from './components/Calendar';
 import Map from './components/Map';
 import Contacts from './components/Contacts';
 import Menu from './components/Menu';
+import ProfilePage from './pages/ProfilePage';
+
 import './App.css';
 import AppConfirmationPage from './pages/AppConfirmationPage';
 
@@ -33,6 +35,9 @@ const App = () => {
         </Route>
         <Route path="/confirmation/:id/">
           <AppConfirmationPage /> 
+        </Route>
+        <Route path="/ProfilePage">
+          <ProfilePage />
         </Route>
       </AppContextProvider>
     </BrowserRouter>
