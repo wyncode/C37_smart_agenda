@@ -1,20 +1,22 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 const Signup = () => {
   const { setUser, setLoggedIn } = useContext(AppContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const history = useHistory();
 
-  const signUp = async (email, password, username, e) => {
+  const signUp = async (email, password, companyName, e) => {
     e.preventDefault();
     await axios({
       method: 'POST',
       url: `http://localhost:8080/companies`,
       data: {
-        username,
+        companyName,
         password,
         email
       }
@@ -27,6 +29,7 @@ const Signup = () => {
         setPassword('');
         setUsername('');
         localStorage.setItem('token', data.token);
+        history.push("/");
       })
       .catch((e) => console.log(e.message.toString()));
   };
@@ -36,7 +39,7 @@ const Signup = () => {
       <form onSubmit={(e) => signUp(email, password, username, e)}>
         <h1>Create Account</h1>
         <div className="form-group">
-          <label htmlFor="name">Name </label>
+          <label htmlFor="companyName">Company </label>
           <input
             className="form-control"
             type="text"

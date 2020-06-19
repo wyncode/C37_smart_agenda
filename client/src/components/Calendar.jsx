@@ -12,8 +12,8 @@ const Calendar = () => {
   useEffect(() => {
     axios.get('/appointments/company', {
       headers: {
-        //after tests, replace the token string to : localStorage.getItem('token') 
-        authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWVhN2EwYTc4MzJmODAzZjg4MTJhNmEiLCJpYXQiOjE1OTI0MzY4ODJ9.AycTluzylt6Qc4se6TfN7ArE-yEjKbedFwAR14V68Uw'
+        
+        authorization: localStorage.getItem('token')//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWVhN2EwYTc4MzJmODAzZjg4MTJhNmEiLCJpYXQiOjE1OTI0MzY4ODJ9.AycTluzylt6Qc4se6TfN7ArE-yEjKbedFwAR14V68Uw'
       }
     }).then(({data}) => {
       setAppointments(data)
