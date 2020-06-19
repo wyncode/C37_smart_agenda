@@ -2,9 +2,18 @@ import React, {useState, useEffect} from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
+import { useHistory } from "react-router-dom";
+
 
 export default function Menu() {
+  const history = useHistory();
 
+  const Logout = () => {
+      localStorage.removeItem("token")
+      history.push("/login");
+      window.location.reload();
+    }
+    
   return (
     <div>
     <Navbar expand="lg" bg="dark" variant="dark" className="navbar-custom">
@@ -18,7 +27,7 @@ export default function Menu() {
         <Nav.Link href="#pricing">help and feedback</Nav.Link>
       </Nav>
       <Nav>
-        <Nav.Link href="#deets">sign out</Nav.Link>
+        <Nav.Link href= "#" onClick={Logout}>sign out</Nav.Link>
       </Nav>
 
       </Navbar.Collapse>

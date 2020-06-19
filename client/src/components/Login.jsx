@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const { setUser, setLoggedIn } = useContext(AppContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const logIn = async (email, password, e) => {
     e.preventDefault();
@@ -18,16 +20,16 @@ const Login = () => {
       }
     })
       .then(({ data }) => {
-        console.log(data, 'response');
         setUser(data.user);
         localStorage.setItem('token', data.token);
         setLoggedIn(true);
         setEmail('');
         setPassword('');
+        history.push("/companies/me");
       })
       .catch((e) => console.log(e.message.toString(), 'Crendentials error'));
   };
-
+  
   return (
     <>
       <form onSubmit={(e) => logIn(email, password, e)}>
@@ -52,10 +54,13 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" >
           Log In
         </button>
       </form>
+          <div>
+           <a href="/signup">Create an Account</a>
+          </div>
     </>
   );
 };

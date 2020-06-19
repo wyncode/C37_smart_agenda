@@ -54,3 +54,7 @@ To process and resize image
 
 For styling
 - install react-bootstrap
+
+To format date:
+- install moment
+

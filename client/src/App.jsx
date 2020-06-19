@@ -7,8 +7,6 @@ import Calendar from './components/Calendar';
 import Map from './components/Map';
 import Contacts from './components/Contacts';
 import Menu from './components/Menu';
-
-
 import './App.css';
 import AppConfirmationPage from './pages/AppConfirmationPage';
 
@@ -18,7 +16,7 @@ const App = () => {
     <BrowserRouter>
      <Menu />
       <AppContextProvider>
-        <Route exact path="/">
+        <Route exact path="/companies/me">
           <Calendar />
         </Route>
         <Route exact path="/contacts">
@@ -34,7 +32,7 @@ const App = () => {
           <SignupPage />
         </Route>
         <Route path="/confirmation/:id/">
-          <AppConfirmationPage />
+          <AppConfirmationPage /> 
         </Route>
       </AppContextProvider>
     </BrowserRouter>
