@@ -13,7 +13,8 @@ router.post('/companies', async (req, res) => {
   const company = new Company(req.body);
   try {
     await company.save();
-    res.status(201).send(company);
+    const token = await company.generateAuthToken();
+    res.status(201).send({ company, token });
   } catch (error) {
     res.status(400).send(error);
   }
@@ -142,6 +143,7 @@ router.post('/companies/login', async (req, res) => {
     res.status(400).send(error);
   }
 });
+
 
 // Logout 1 device
 
