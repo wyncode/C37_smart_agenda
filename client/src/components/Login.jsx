@@ -3,7 +3,7 @@ import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 
 const Login = () => {
-  const { setUser, setLoggedIn, user } = useContext(AppContext);
+  const { setUser, setLoggedIn } = useContext(AppContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -56,7 +56,6 @@ const Login = () => {
           Log In
         </button>
       </form>
-      <div>{user.name}</div>
     </>
   );
 };

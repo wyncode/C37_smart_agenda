@@ -6,12 +6,17 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Calendar from './components/Calendar';
 import Map from './components/Map';
 import Contacts from './components/Contacts';
+import Menu from './components/Menu';
+
 
 import './App.css';
+import AppConfirmationPage from './pages/AppConfirmationPage';
 
 const App = () => {
   return (
+
     <BrowserRouter>
+     <Menu />
       <AppContextProvider>
         <Route exact path="/">
           <Calendar />
@@ -27,6 +32,9 @@ const App = () => {
         </Route>
         <Route path="/signup">
           <SignupPage />
+        </Route>
+        <Route path="/confirmation/:id/">
+          <AppConfirmationPage />
         </Route>
       </AppContextProvider>
     </BrowserRouter>

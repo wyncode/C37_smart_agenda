@@ -1,0 +1,51 @@
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+
+.calendarStyle {
+    margin-left: 10vh;
+    margin-right: 10vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.fc-button-primary:hover {
+    background-color: #E88306 !important;
+    border-color: #E88306 !important;
+}
+
+.fc-button-primary, .fc-button-primary:disabled {
+    background-color: #efc799;
+    border-color: #efc799;
+}
+
+.fc-day-number, h2 {
+    color: #0b7785
+}
+
+.fc-scroller, .fc-day-grid-container {
+    height: auto !important;
+    width: auto;
+}
+
+.fc-unthemed td.fc-today {
+    background: #fde1c0;
+    // border-color: #E88306; **get the bottom border fixed, then do border-color**
+}
+
+.fc th {
+    background: #E88306;
+    color: white;
+}
+
+@media only screen and (max-width: 450px) {
+    .calendarStyle {
+        margin: 0 auto;
+    }
+
+    .fc, .fc-ltr, .fc-unthemed {
+        width: 330px;
+        margin: 0 auto;
+        margin-top: 24px;
+    }
+}
+

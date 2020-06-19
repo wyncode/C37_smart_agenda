@@ -2,12 +2,16 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = new express.Router();
 const Appointment = require('../models/appointment_model');
+const Company = require('../models/company_model');
+const { withCustomer, auth } = require('../middleware/auth.js');
+const Customer = require('../models/customer_model');
 
 
 // creating an appointment 
 
-router.post('/appointments', async (req, res) => {
-    const appointment = new Appointment(req.body);
+router.post('/appointments', withCustomer, async (req, res) => {
+    const company = req.customer.owner
+    const appointment = new Appointment({ ...req.body, customer: req.customer._id,  company });
     try {
         await appointment.save();
         res.status(201).send(appointment);
@@ -15,6 +19,34 @@ router.post('/appointments', async (req, res) => {
         res.status(400).send(error);
     }
 })
+
+//get a list of appointments (company's view)
+
+router.get('/appointments/company', auth, async (req, res) => {    
+    
+    const company = req.company
+
+    const appointments = await Appointment.find({ company: company._id })
+
+    res.status(200).send(appointments)
+    
+   
+})
+
+
+//get appointments (customer's view)
+router.get('/appointments/customer', withCustomer, async (req, res) => {    
+    const customer = req.customer
+
+    const appointments = await Appointment.find({ company: customer.owner })
+
+    res.status(200).send(appointments)
+    
+})
+
+
+
+
 
 // getting appointment by ID 
 
