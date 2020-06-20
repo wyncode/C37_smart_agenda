@@ -7,6 +7,8 @@ import Calendar from './components/Calendar';
 import Map from './components/Map';
 import Contacts from './components/CustomersList';
 import Menu from './components/Menu';
+import ProfilePage from './pages/ProfilePage';
+
 import './App.css';
 import AppConfirmationPage from './pages/AppConfirmationPage';
 import AppInvitePage from './pages/AppInvitePage';
@@ -40,6 +42,9 @@ const App = () => {
         </Route>
         <Route path="/clients">
           <ClientsPage />
+        </Route>
+        <Route path="/ProfilePage">
+          <ProfilePage />
         </Route>
       </AppContextProvider>
     </BrowserRouter>

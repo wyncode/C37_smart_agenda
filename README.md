@@ -55,6 +55,8 @@ To process and resize image
 For styling
 - install react-bootstrap
 
-To format date:
+For dates/times
 - install moment
 
+For map feature
+- install mapbox-gl 
