@@ -1,9 +1,18 @@
-import React, { useState, useParams, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
 
 const Contact = () => {
   const [apiData, setApiData] = useState({});
-  let { id } = useParams();
+  let pathArray = window.location.pathname.split('/');
+  let id = pathArray[2];
+  const history = useHistory();
+
+  const handleClick = (prop, id) => {
+    history.push(`/invite/${prop}/${id}`);
+  };
+
   useEffect(() => {
     const getData = async () => {
       axios
@@ -18,9 +27,8 @@ const Contact = () => {
         });
     };
     getData();
-  }, [id]);
+  });
 
-  //add dynamic change
   const customer = apiData.customer;
   const email = apiData.email;
   const phone = apiData.phone;
@@ -29,6 +37,12 @@ const Contact = () => {
       <h1>Customer: {customer}</h1>
       <h1>Email: {email}</h1>
       <h1>Phone: {phone}</h1>
+      <Button
+        variant="outline-primary"
+        onClick={handleClick.bind(this, `${email}`, `${id}`)}
+      >
+        Create Appointment
+      </Button>{' '}
     </div>
   );
 };

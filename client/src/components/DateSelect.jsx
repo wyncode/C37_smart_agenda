@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import DatePick from '../components/DatePick';
 import axios from 'axios';
 import moment from 'moment';
@@ -7,21 +6,35 @@ import TimePick from './TimePick';
 
 const DateSelect = () => {
   const [apiData, setApiData] = useState({});
-
-  let { id } = useParams();
+  let pathArray = window.location.pathname.split('/');
+  let id = pathArray[2];
 
   useEffect(() => {
     const getData = async () => {
       axios.get(`http://localhost:8080/appointments/${id}`).then((response) => {
-        setApiData(response.data.appointment);
+        setApiData(response.data);
         console.log(response.data);
       });
     };
     getData();
-  }, [id]);
+  });
+
+  // const getOwner = (name) => {
+  //   axios
+  //     .get(`http://localhost:8080/customers/${owner}`, {
+  //       headers: {
+  //         authorization: `${localStorage.getItem('token')}`
+  //       }
+  //     })
+  //     .then((response) => {
+  //       setCustomerName(response.data.company);
+  //       console.log(response.data);
+  //     });
+  //   return customerName;
+  // };
 
   //add dynamic change
-  const owner = apiData.owner;
+  const owner = apiData.company;
   const duration = apiData.duration;
   const date = apiData.date;
 

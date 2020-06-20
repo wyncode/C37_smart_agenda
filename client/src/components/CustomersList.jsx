@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
 
 const CustomersList = () => {
@@ -11,7 +12,9 @@ const CustomersList = () => {
   const handleClick = (prop) => {
     history.push(`/client/${prop}`);
   };
-
+  const handleClickNew = () => {
+    history.push(`/add-client`);
+  };
   const getData = () => {
     axios
       .get(`http://localhost:8080/customers/all/`, {
@@ -42,6 +45,9 @@ const CustomersList = () => {
           );
         }
       })}
+      <Button variant="outline-primary" onClick={handleClickNew}>
+        +
+      </Button>{' '}
     </div>
   );
 };
