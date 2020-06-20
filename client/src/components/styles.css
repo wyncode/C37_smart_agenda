@@ -4,14 +4,18 @@
 }
 
 .nav-top {
-    display: flex;
-    justify-content: space-between;
-    position: absolute; 
-    margin-left: 25vh;
-    top: 0;
-    right: 0;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  margin-left: 25vh;
+  top: 0;
+  right: 0;
 }
 
 .navbar-custom {
   background-color: #0e7785 !important;
 }
+
+/* [type='radio'] {
+  display: none;
+} */
