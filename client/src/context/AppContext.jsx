@@ -16,7 +16,6 @@ const AppContextProvider = ({ children }) => {
           headers: { Authorization: `Bearer ${token}` }
         })
         .then(({ data }) => {
-          console.log(data);
           setUser(data);
           setLoggedIn(true);
         })

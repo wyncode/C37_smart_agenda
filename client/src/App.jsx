@@ -5,18 +5,19 @@ import SignupPage from './pages/SignupPage';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Calendar from './components/Calendar';
 import Map from './components/Map';
-import Contacts from './components/Contacts';
+import Contacts from './components/CustomersList';
 import Menu from './components/Menu';
 import ProfilePage from './pages/ProfilePage';
 
 import './App.css';
 import AppConfirmationPage from './pages/AppConfirmationPage';
+import AppInvitePage from './pages/AppInvitePage';
+import ClientsPage from './pages/ClientsPage';
 
 const App = () => {
   return (
-
     <BrowserRouter>
-     <Menu />
+      <Menu />
       <AppContextProvider>
         <Route exact path="/companies/me">
           <Calendar />
@@ -24,9 +25,9 @@ const App = () => {
         <Route exact path="/contacts">
           <Contacts />
         </Route>
-        <Route exact path="/map">
+        {/* <Route exact path="/map">
           <Map />
-        </Route>
+        </Route> */}
         <Route path="/login">
           <LoginPage />
         </Route>
@@ -34,7 +35,13 @@ const App = () => {
           <SignupPage />
         </Route>
         <Route path="/confirmation/:id/">
-          <AppConfirmationPage /> 
+          <AppConfirmationPage />
+        </Route>
+        <Route path="/invite">
+          <AppInvitePage />
+        </Route>
+        <Route path="/clients">
+          <ClientsPage />
         </Route>
         <Route path="/ProfilePage">
           <ProfilePage />
