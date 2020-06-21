@@ -32,7 +32,7 @@ router.get('/companies/me', auth, async (req, res) => {
 router.patch('/companies/:id', auth, async (req, res) => {
   //object.keys  will return a list of keys in an array
   const updates = Object.keys(req.body);
-  const allowedUpdates = ['password', 'email', 'phone', 'services', 'calendar'];
+  const allowedUpdates = ['password', 'email', 'phone', 'services', 'calendar', 'avatar'];
 
   //for every element in the updates, if the update element match with some
   //of the allowedUpdates, so return true valid operation.
