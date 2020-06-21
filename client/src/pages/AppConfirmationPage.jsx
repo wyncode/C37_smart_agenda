@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { useHistory } from 'react-router-dom';
 import DatePicker, { setHours, setMinutes } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const AppConfirmationPage = () => {
   const [apiData, setApiData] = useState({});
   const [companyName, setCompanyName] = useState([]);
+
+  //using pathArray to set the id variable
   let pathArray = window.location.pathname.split('/');
   let id = pathArray[2];
 
@@ -31,27 +34,26 @@ const AppConfirmationPage = () => {
 
   const company = companyName.companyName;
   const duration = apiData.duration;
+  const history = useHistory();
   const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState(new Date());
 
-  const createAppointment = async (date, time, e) => {
+  const createAppointment = async (date, e) => {
     e.preventDefault();
     await axios({
       method: 'PATCH',
       url: `http://localhost:8080/appointments/${id}`,
       data: {
-        date,
-        time
+        date
       },
       headers: {
         authorization: `${localStorage.getItem('token')}`
       }
     })
       .then(() => {
-        setDate('');
-        setTime('');
+        setDate(``);
       })
       .catch((e) => console.log(e.message.toString()));
+    history.push(`/confirmation-successful/${id}`);
   };
 
   return (
@@ -59,7 +61,7 @@ const AppConfirmationPage = () => {
       <div>
         <h1>{company}</h1>
         <h3>Invites You To A {duration} Minute Meeting!</h3>
-        <form onSubmit={(e) => createAppointment(date, time, e)}>
+        <form onSubmit={(e) => createAppointment(date, e)}>
           <p>Select a day</p>
           <DatePicker
             selected={date}
@@ -71,18 +73,27 @@ const AppConfirmationPage = () => {
           <p>{moment(date).format('MMMM Do, YYYY')}</p>
           <p>Select a Time</p>
           <DatePicker
-            selected={time}
-            onChange={(startTime) => setTime(startTime)}
+            selected={date}
+            onChange={(startDate) => setDate(startDate)}
             showTimeSelect
             showTimeSelectOnly
-            minTime={setHours(setMinutes(new Date(), 0), 9)}
-            maxTime={setHours(setMinutes(new Date(), 0), 17)}
             timeIntervals={30}
             timeCaption="Time"
             dateFormat="h:mm aa"
             inline
           />
-          <p>{moment(time).format('LT')}</p>
+          {/* <DatePicker
+            selected={date}
+            minDate={moment().toDate()}
+            onChange={(startDate) => setDate(startDate)}
+            inline
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={30}
+            timeCaption="Time"
+            dateFormat="h:mm aa"
+          /> */}
+          <p>{moment(date).format('LT')}</p>
           <p>Duration: {duration} Minutes</p>
           <button type="submit">Send</button>
         </form>

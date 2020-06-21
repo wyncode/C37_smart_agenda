@@ -22,7 +22,7 @@ const Calendar = () => {
   }, []);
 
   const appointmentView = appointments.map((app) => {
-    return { date: app?.date, title: app?.time };
+    return { date: app?.date, title: app?.customerName };
   });
 
   return (
