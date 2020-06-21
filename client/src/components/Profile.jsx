@@ -33,28 +33,40 @@ const Profile = () => {
       .catch(console.log);
   }, [company]);
 
-  const profile = async () => {
-    await axios({
-      method: 'PATCH',
-      url: `/companies/${company._id}`,
+  // const profile = async () => {
+  //   await axios({
+  //     method: 'PATCH',
+  //     url: `/companies/${company._id}`,
+  //     headers: {
+  //       authorization: localStorage.getItem('token')
+  //     },
+  //     data: formData
+  //   })
+  //   .then(({ data }) => {
+  //     console.log(data, 'response');
+  //     setUser(data.user);
+  //     localStorage.setItem('token', data.token);
+  //     setLoggedIn(true);
+  //     setAvatar('');
+  //     setCompanyName('');
+  //     setEmail('');
+  //     setPhone('');
+  //     setServices('');
+  //    history.push("/companies/me")
+  //   })
+  //   .catch((e) => console.log(e.message.toString()));
+  // }
+
+  const profile = async (e) => {
+    const { data } = await axios({
+      method: "PATCH",
+      url: `http://localhost:8080/companies/${company._id}`,
       headers: {
         authorization: localStorage.getItem('token')
       },
       data: formData
-    })
-    .then(({ data }) => {
-      console.log(data, 'response');
-      setUser(data.user);
-      localStorage.setItem('token', data.token);
-      setLoggedIn(true);
-      setAvatar('');
-      setCompanyName('');
-      setEmail('');
-      setPhone('');
-      setServices('');
-     history.push("/companies/me")
-    })
-    .catch((e) => console.log(e.message.toString()));
+    });
+    console.log(data)
   }
 
     const handleImage = e => {
@@ -69,6 +81,13 @@ const Profile = () => {
       setFormData({...formData, [e.target.name]: e.target.value})
       console.log(formData)
     }
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log('form submitted');
+      profile();
+      setFormData({});
+    };
 
   return (
     <form onSubmit={handleSubmit}>
