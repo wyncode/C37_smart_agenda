@@ -3,6 +3,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { useHistory } from 'react-router-dom';
+import  {Link } from 'react-router-dom'
 
 export default function Menu() {
   const history = useHistory();
@@ -21,7 +22,7 @@ export default function Menu() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/clients">clients</Nav.Link>
-            <Nav.Link href="#pricing">your profile</Nav.Link>
+            <Nav.Item><Link to="/ProfilePage">your profile</Link></Nav.Item>
             <Nav.Link href="#pricing">settings</Nav.Link>
             <Nav.Link href="#pricing">help and feedback</Nav.Link>
           </Nav>
