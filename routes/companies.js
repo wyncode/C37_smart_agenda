@@ -6,7 +6,6 @@ const multer = require('multer');
 const sharp = require('sharp');
 const Company = require('../models/company_model');
 
-
 // Creating a company
 
 router.post('/companies', async (req, res) => {
@@ -26,6 +25,27 @@ router.get('/companies/me', auth, async (req, res) => {
   res.send(req.company);
 });
 
+//get specific user without auth
+router.get('/companies/:id', (req, res) => {
+  const _id = req.params.id;
+  if (mongoose.Types.ObjectId.isValid(_id)) {
+    Company.findById(_id)
+      .then((company) => {
+        if (!company) {
+          // The gotcha here is that this will only trigger if
+          // the _id param sent is 12 bits (12 character string)
+          return res.status(404).send();
+        }
+        res.send(company);
+      })
+      .catch((e) => {
+        console.log(e.toString());
+        res.status(500).send();
+      });
+  } else {
+    res.status(400).send('Not a valid id');
+  }
+});
 
 //updating data's company
 
@@ -60,12 +80,16 @@ router.patch('/companies/:id', auth, async (req, res) => {
 
 const upload = multer({
   limits: {
-		// 1000000 bytes, is 1000 kb or 1 mb.
+    // 1000000 bytes, is 1000 kb or 1 mb.
     fileSize: 1000000
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-      return cb(new Error('"Uploaded image is not a valid. Only JPG, JPEG and PNG files are allowed.'));
+      return cb(
+        new Error(
+          '"Uploaded image is not a valid. Only JPG, JPEG and PNG files are allowed.'
+        )
+      );
     }
     cb(undefined, true);
   }
@@ -117,7 +141,6 @@ router.get('/companies/:id/avatar', async (req, res) => {
   }
 });
 
-
 // Deleting company
 
 router.delete('/companies/me', auth, async (req, res) => {
@@ -143,7 +166,6 @@ router.post('/companies/login', async (req, res) => {
     res.status(400).send(error);
   }
 });
-
 
 // Logout 1 device
 

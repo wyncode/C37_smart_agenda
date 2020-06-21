@@ -7,6 +7,7 @@ import '../components/styles.css';
 const AppInvitePage = () => {
   const [duration, setDuration] = useState('');
   const [service, setService] = useState('');
+
   const [apiData, setApiData] = useState({});
   let pathArray = window.location.pathname.split('/');
   let email = pathArray[2];
@@ -41,7 +42,8 @@ const AppInvitePage = () => {
       url: `http://localhost:8080/appointments?email=${email}`,
       data: {
         duration,
-        service
+        service,
+        customerName: `${customer}`
       },
       headers: {
         authorization: `${localStorage.getItem('token')}`
