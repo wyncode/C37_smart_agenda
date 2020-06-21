@@ -46,31 +46,31 @@ const Profile = () => {
 
     .then(({ data }) => {
       console.log(data, 'response');
-      // setUser(data.user);
-      // localStorage.setItem('token', data.token);
-      // setLoggedIn(true);
-      // setAvatar('');
-      // setCompanyName('');
-      // setEmail('');
-      // setPhone('');
-      // setServices('');
-     // history.push("/companies/me")
+      setUser(data.user);
+      localStorage.setItem('token', data.token);
+      setLoggedIn(true);
+      setAvatar('');
+      setCompanyName('');
+      setEmail('');
+      setPhone('');
+      setServices('');
+     history.push("/companies/me")
     })
     .catch((e) => console.log(e.message.toString()));
   }
 
-    // const handleImage = e => {
-    //  const file = e.target.files[0]
-    //  const data = new FormData()
-    //  data.append('file', file)
-    //  data.append('upload_preset', 'smartagendapreset')
-    //  axios.post(`https://api.cloudinary.com/v1_1/smartagend/image/upload`, data)
-    //  .then(res => setFormData({...formData, avatar: res.data.secure_url}))
-    // }
-    // const handleChange = e => {
-    //   setFormData({...formData, [e.target.name]: e.target.value})
-    //   console.log(formData)
-    // }
+    const handleImage = e => {
+     const file = e.target.files[0]
+     const data = new FormData()
+     data.append('file', file)
+     data.append('upload_preset', 'smartagendapreset')
+     axios.post(`https://api.cloudinary.com/v1_1/smartagend/image/upload`, data)
+     .then(res => setFormData({...formData, avatar: res.data.secure_url}))
+    }
+    const handleChange = e => {
+      setFormData({...formData, [e.target.name]: e.target.value})
+      console.log(formData)
+    }
 
   const handleSubmit = e => {
     
