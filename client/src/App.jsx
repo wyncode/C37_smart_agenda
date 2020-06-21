@@ -23,7 +23,7 @@ const App = () => {
     <BrowserRouter>
       <Menu />
       <AppContextProvider>
-        <Route exact path="/companies/me">
+        <Route exact path="/">
           <Calendar />
         </Route>
         <Route exact path="/contacts">

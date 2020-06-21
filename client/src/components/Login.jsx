@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import hourglass from "../images/hourglass.svg"
 
 const Login = () => {
   const { setUser, setLoggedIn } = useContext(AppContext);
@@ -25,15 +26,21 @@ const Login = () => {
         setLoggedIn(true);
         setEmail('');
         setPassword('');
-        history.push("/companies/me");
+        history.push("/");
       })
-      .catch((e) => console.log(e.message.toString(), 'Crendentials error'));
+      .catch((e) => window.alert( 'Crendentials error'))
   };
   
   return (
     <>
-      <form onSubmit={(e) => logIn(email, password, e)}>
-        <h3>Welcome Back</h3>
+      <br/>
+      <div className="image-message">
+      <img id="image" src={hourglass}/>
+        <h5>Smart Agenda. Smartest way to schedule appointments with clients. </h5>
+      </div>
+      <br/>
+      <form className="form-group" onSubmit={(e) => logIn(email, password, e)}>
+      <h4>Welcome Back!</h4>
         <div className="form-group">
           <label htmlFor="email">Email </label>
           <input
@@ -54,13 +61,14 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary" >
+        <button type="submit" className="btn btn-secondary" >
           Log In
         </button>
       </form>
-          <div>
-           <a href="/signup">Create an Account</a>
-          </div>
+      <div className="form-group">
+        <a className="create-account" href="/signup">Create an Account</a>
+      </div>
+      
     </>
   );
 };
