@@ -16,6 +16,7 @@ import ClientsPage from './pages/ClientsPage';
 import Contact from './components/Contact';
 import CreateCustomer from './components/CreateCustomer';
 import InviteSuccessPage from './pages/InviteSuccessPage';
+import ConfirmationSuccessfulPage from './pages/ConfirmationSuccessfulPage';
 
 const App = () => {
   return (
@@ -37,9 +38,6 @@ const App = () => {
         <Route path="/signup">
           <SignupPage />
         </Route>
-        <Route path="/confirmation/:id/">
-          <AppConfirmationPage />
-        </Route>
         <Route path="/invite">
           <AppInvitePage />
         </Route>
@@ -59,6 +57,12 @@ const App = () => {
           <ProfilePage />
         </Route>
       </AppContextProvider>
+      <Route path="/confirmation/:id/">
+        <AppConfirmationPage />
+      </Route>
+      <Route path="/confirmation-successful/:id">
+        <ConfirmationSuccessfulPage />
+      </Route>
     </BrowserRouter>
   );
 };
