@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const appointmentSchema = new mongoose.Schema({
+  customerName: {
+    type: String,
+    trim: true,
+    required: false
+  },
   date: {
     type: String,
     trim: true,

@@ -22,8 +22,7 @@ const CreateCustomer = () => {
         authorization: `${localStorage.getItem('token')}`
       }
     })
-      .then(({ data }) => {
-        localStorage.getItem('token');
+      .then(() => {
         setCustomer('');
         setPhone('');
         setEmail('');
