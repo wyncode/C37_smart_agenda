@@ -29,16 +29,19 @@ const Signup = () => {
         setEmail('');
         setPassword('');
         setUsername('');
-        history.push("/companies/me");
+        localStorage.setItem('token', data.token);
+        history.push("/");
+        window.alert('Account created succesfully.')
       })
-      .catch((e) => console.log(e.message.toString()));
+      .catch((e) => window.alert( 'Email or password invalid'));
   };
 
   return (
     <div>
-      <form onSubmit={(e) => signUp(email, password, username, e)}>
-        <h1>Create Account</h1>
+      <form className="form-group" onSubmit={(e) => signUp(email, password, username, e)}>
+        
         <div className="form-group">
+          <h4>Create Account</h4>
           <label htmlFor="companyName">Company </label>
           <input
             className="form-control"
@@ -74,7 +77,7 @@ const Signup = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-secondary">
           Sign up
         </button>
       </form>

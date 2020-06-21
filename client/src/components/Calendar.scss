@@ -28,7 +28,7 @@
 }
 
 .fc-unthemed td.fc-today {
-    background: #fde1c0;
+    background: #d9dedf;
     // border-color: #E88306; **get the bottom border fixed, then do border-color**
 }
 
@@ -36,7 +36,14 @@
     background: #E88306;
     color: white;
 }
-
+.fc-content{
+    color:white;
+  }
+  .fc-event {
+    background-color: #5e5768;
+    border: 1px solid #5e5768;
+  }
+  
 @media only screen and (max-width: 450px) {
     .calendarStyle {
         margin: 0 auto;

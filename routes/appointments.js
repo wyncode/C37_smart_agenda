@@ -5,34 +5,44 @@ const Appointment = require('../models/appointment_model');
 const Company = require('../models/company_model');
 const { withCustomer, auth } = require('../middleware/auth.js');
 const Customer = require('../models/customer_model');
+const moment = require('moment')
 
-// creating an appointment
+// creating an appointment 
 
 router.post('/appointments', withCustomer, async (req, res) => {
-  const company = req.customer.owner;
-  const appointment = new Appointment({
-    ...req.body,
-    customer: req.customer._id,
-    company
-  });
-  try {
-    await appointment.save();
-    res.status(201).send(appointment);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
+    const company = req.customer.owner
+    const appointment = new Appointment({ 
+        ...req.body, 
+        time: moment(req.body.time).format('LT'),
+        customer: req.customer._id,  
+        company });
+    try {
+
+        await appointment.save();
+        res.status(201).send(appointment);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+})
 
 //get a list of appointments (company's view)
 
-router.get('/appointments/company', auth, async (req, res) => {
-  const company = req.company;
-
-  const appointments = await Appointment.find({ company: company._id });
-
-  res.status(200).send(appointments);
-});
-
+router.get('/appointments/company', auth, async (req, res) => {    
+    
+    const company = req.company
+    await Appointment.find({ company: company._id }).populate("company")
+    .exec( (err, company) => {
+        res.status(200).send(company)
+    })   
+   
+})
+// router.get('/appointments/company/customer', auth, async (req, res) => {  
+//     const customer = req.customer
+//     await Appointment.find({ customer: customer._id }).populate("customer")
+//     .exec((err, customer) => {
+//         res.status(200).send(customer)
+//     }) 
+// })
 //get appointments (customer's view)
 router.get('/appointments/customer', withCustomer, async (req, res) => {
   const customer = req.customer;

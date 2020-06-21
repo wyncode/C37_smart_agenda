@@ -19,6 +19,9 @@ router.post('/companies', async (req, res) => {
   }
 });
 
+
+
+
 // Get current company
 
 router.get('/companies/me', auth, async (req, res) => {
@@ -46,6 +49,7 @@ router.get('/companies/:id', (req, res) => {
     res.status(400).send('Not a valid id');
   }
 });
+
 
 //updating data's company
 
@@ -195,5 +199,29 @@ router.post('/companies/logoutall', auth, async (req, res) => {
     res.status(500).send();
   }
 });
+
+//get specific user without auth
+
+router.get('/companies/:id', (req, res) => {
+  const _id = req.params.id;
+  if (mongoose.Types.ObjectId.isValid(_id)) {
+    Company.findById(_id)
+      .then(company => {
+        if (!company) {
+          // The gotcha here is that this will only trigger if 
+					// the _id param sent is 12 bits (12 character string)
+          return res.status(404).send();
+        }
+        res.send(company);
+      })
+      .catch(e => {
+        console.log(e.toString());
+        res.status(500).send();
+      });
+  } else {
+    res.status(400).send('Not a valid id');
+  }
+});
+
 
 module.exports = router;
