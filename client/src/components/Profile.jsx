@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import './Profile.css';
 
 const Profile = () => {
   const { setUser, setLoggedIn } = useContext(AppContext);
@@ -93,43 +94,38 @@ const Profile = () => {
     <form onSubmit={handleSubmit}>
       <h1>Your Profile</h1>
 
-      <div className="avatarInfo">
-        <img src={company.avatar} alt="company image" />
-        {avatarInputShow && (
-          <input type="file" name="avatar" onChange={handleImage} />
-        )}
-        <div
-          style={{ color: 'red' }}
-          onClick={() => setAvatarInputShow(!avatarInputShow)}
-        >
-          upload new avatar
-        </div>
-      </div>
-
       <div className="companyNameInfo">
-        <p>Company: {company.companyName}</p>
+        <p>Company Name: {company.companyName}</p>
         {companyNameInputShow && (
           <input type="text" name="companyName" onChange={handleChange} />
         )}
-        <div onClick={() => setCompanyNameInputShow(!companyNameInputShow)}>
+        <div 
+          style={{ border: '1px solid black', borderRadius: 4, width: 40, textAlign: 'center', margin: 'auto',
+                  backgroundColor: 'white', color: '#e88302', borderColor: "orange", cursor: 'pointer' }}
+          onClick={() => setCompanyNameInputShow(!phoneInputShow)}
+        >
           edit
         </div>
       </div>
 
-      <div className="userNameInfo">
-        <p>Username: {company.userName}</p>
-        {usernameInputShow && (
-          <input type="text" name="username" onChange={handleChange} />
-        )}
-      </div>
+        <br />
+      
 
       <div className="emailInfo">
         <p>Email: {company.email}</p>
         {emailInputShow && (
           <input type="email" name="email" onChange={handleChange} />
         )}
-        <div onClick={() => setEmailInputShow(!emailInputShow)}>edit</div>
-      </div>
+        <div
+          style={{ border: '1px solid black', borderRadius: 4, width: 40, textAlign: 'center', margin: 'auto',
+                  backgroundColor: 'white', color: '#e88302', borderColor: 'orange', cursor: 'pointer' }}
+          onClick={() => setEmailInputShow(!phoneInputShow)}
+        >
+          edit
+        </div>
+
+          <br />
+          
 
       <div className="phoneInfo">
         <p>Phone: {company.phone}</p>
@@ -137,24 +133,16 @@ const Profile = () => {
           <input type="text" name="phone" onChange={handleChange} />
         )}
         <div
-          style={{ border: '1px solid black', borderRadius: 4, width: 50 }}
+          style={{ border: '1px solid black', borderRadius: 4, width: 40, textAlign: 'center', margin: 'auto',
+                    backgroundColor: 'white', color: '#e88302', borderColor: 'orange', cursor: 'pointer' }}
           onClick={() => setPhoneInputShow(!phoneInputShow)}
         >
           edit
         </div>
       </div>
 
-      <div className="servicesInfo">
-        <p>Services Offered: {company.services}</p>
-        {servicesInputShow && (
-          <input type="text" name="services" onChange={handleChange} />
-        )}
-        <div
-          style={{ color: 'red' }}
-          onClick={() => setServicesInputShow(!servicesInputShow)}
-        >
-          edit
-        </div>
+        <br />
+       
 
         <button>Submit Changes</button>
       </div>

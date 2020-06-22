@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AppContextProvider } from './context/AppContext';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -8,7 +8,6 @@ import Calendar from './components/Calendar';
 import Contacts from './components/CustomersList';
 import Menu from './components/Menu';
 import ProfilePage from './pages/ProfilePage';
-
 import './App.css';
 import AppConfirmationPage from './pages/AppConfirmationPage';
 import AppInvitePage from './pages/AppInvitePage';
@@ -19,10 +18,12 @@ import InviteSuccessPage from './pages/InviteSuccessPage';
 import ConfirmationSuccessfulPage from './pages/ConfirmationSuccessfulPage';
 
 const App = () => {
+  const loggedIn = useContext(AppContextProvider);
+  console.log(loggedIn);
   return (
     <BrowserRouter>
-      <Menu />
       <AppContextProvider>
+      <Menu />
         <Route exact path="/">
           <Calendar />
         </Route>

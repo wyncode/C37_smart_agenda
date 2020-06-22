@@ -1,0 +1,32 @@
+h1 {
+    color: #bcc9cb;
+    text-align: center;
+}
+
+.companyNameInfo {
+    text-align: center;
+    color: #5e8187;
+}
+
+.userNameInfo {
+    text-align: center;
+    color: #5e8187; 
+}
+
+.emailInfo {
+    text-align: center;
+    color: #5e8187;
+}
+
+.phoneInfo {
+    text-align: center;
+    color: 5e8187;
+}
+
+button {
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: #e88302;
+}
+
