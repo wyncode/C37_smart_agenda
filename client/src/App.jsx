@@ -6,7 +6,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Calendar from './components/Calendar';
 // import Map from './components/Map';
 import Contacts from './components/CustomersList';
-import Menu from './components/Menu';
 import ProfilePage from './pages/ProfilePage';
 import './App.css';
 import AppConfirmationPage from './pages/AppConfirmationPage';
@@ -19,11 +18,9 @@ import ConfirmationSuccessfulPage from './pages/ConfirmationSuccessfulPage';
 
 const App = () => {
   const loggedIn = useContext(AppContextProvider);
-  console.log(loggedIn);
   return (
     <BrowserRouter>
       <AppContextProvider>
-      <Menu />
         <Route exact path="/">
           <Calendar />
         </Route>

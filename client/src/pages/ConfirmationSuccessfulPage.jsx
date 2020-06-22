@@ -3,6 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 import confirmed from '../images/confirmed.svg';
 import '../css/contact.css';
+import Menu2 from '../components/Menu2';
 
 const ConfirmationSuccessfulPage = () => {
   const [apiData, setApiData] = useState({});
@@ -30,17 +31,20 @@ const ConfirmationSuccessfulPage = () => {
   const company = companyName.companyName;
 
   return (
-    <div className="invSuccess">
-      <h1 style={{ fontWeight: 'bold' }}>Confirmed!</h1>
-      <p>You are scheduled with {company}</p>
-      <hr />
-      <h1>{duration} Minute Meeting</h1>
-      <p>
-        {moment(date).format('LT')}, {moment(date).format('dddd')},{' '}
-        {moment(date).format('MMMM Do, YYYY')}
-      </p>
-      <img className="image" src={confirmed} alt="Logo" />
-    </div>
+    <>
+      <Menu2 />
+      <div className="invSuccess">
+        <h1 style={{ fontWeight: 'bold' }}>Confirmed!</h1>
+        <p>You are scheduled with {company}</p>
+        <hr />
+        <h1>{duration} Minute Meeting</h1>
+        <p>
+          {moment(date).format('LT')}, {moment(date).format('dddd')},{' '}
+          {moment(date).format('MMMM Do, YYYY')}
+        </p>
+        <img className="image" src={confirmed} alt="Logo" />
+      </div>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
+import Menu from './Menu';
 
 const CustomersList = () => {
   const [apiData, setApiData] = useState([]);
@@ -23,40 +24,38 @@ const CustomersList = () => {
         }
       })
       .then((response) => {
-        const sortedCustomers = response.data.sort(customer => {
-          
-        })
+        const sortedCustomers = response.data.sort((customer) => {});
         setApiData(sortedCustomers);
       });
-
-        
-
   };
   getData();
 
   return (
-    <div className="client_list">
-      <h5 className="clients_title">List of Clients</h5>
-      {apiData.map((contact, index) => {
-        if (contact.customer[0] !== letter) {
-          letter = contact.customer[0];
+    <>
+      <Menu />
+      <div className="client_list">
+        <h5 className="clients_title">List of Clients</h5>
+        {apiData.map((contact, index) => {
+          if (contact.customer[0] !== letter) {
+            letter = contact.customer[0];
 
-          return (
-            <div  key={index}>
-              <h6 id="letter">{letter.toUpperCase()}</h6>
-              <p id="list" onClick={handleClick.bind(this, `${contact._id}`)}>
-                {contact.customer.toUpperCase()}
-              </p>
-            </div>
-          );
-        }
-      })}
-      <div>
-        <button  className="btn btn-secondary button" onClick={handleClickNew}>
-          Add new client
-        </button>{' '}
+            return (
+              <div key={index}>
+                <h6 id="letter">{letter.toUpperCase()}</h6>
+                <p id="list" onClick={handleClick.bind(this, `${contact._id}`)}>
+                  {contact.customer.toUpperCase()}
+                </p>
+              </div>
+            );
+          }
+        })}
+        <div>
+          <button className="btn btn-secondary button" onClick={handleClickNew}>
+            Add new client
+          </button>{' '}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

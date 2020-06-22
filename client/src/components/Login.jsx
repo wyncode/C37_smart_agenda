@@ -3,6 +3,7 @@ import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import hourglass from '../images/hourglass.svg';
+import Menu2 from './Menu2';
 
 const Login = () => {
   const { setUser, setLoggedIn } = useContext(AppContext);
@@ -33,6 +34,7 @@ const Login = () => {
 
   return (
     <>
+      <Menu2 />
       <br />
       <div className="image-message">
         <img id="image" alt="Hourglass" src={hourglass} />

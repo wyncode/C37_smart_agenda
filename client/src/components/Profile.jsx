@@ -3,6 +3,7 @@ import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import './Profile.css';
+import Menu from './Menu';
 
 const Profile = () => {
   const { setUser, setLoggedIn } = useContext(AppContext);
@@ -31,8 +32,8 @@ const Profile = () => {
       .then(({ data }) => {
         setCompany(data);
       })
-      .catch(err => {
-        console.log(err)
+      .catch((err) => {
+        console.log(err);
       });
   }, [company]);
 
@@ -62,93 +63,121 @@ const Profile = () => {
 
   const profile = async (e) => {
     const { data } = await axios({
-      method: "PATCH",
+      method: 'PATCH',
       url: `http://localhost:8080/companies/${company._id}`,
       headers: {
         authorization: localStorage.getItem('token')
       },
       data: formData
     });
-    console.log(data)
-  }
+    console.log(data);
+  };
 
-    const handleImage = e => {
-     const file = e.target.files[0]
-     const data = new FormData()
-     data.append('file', file)
-     data.append('upload_preset', 'smartagendapreset')
-     axios.post(`https://api.cloudinary.com/v1_1/smartagend/image/upload`, data)
-     .then(res => setFormData({...formData, avatar: res.data.secure_url}))
-    }
-    const handleChange = e => {
-      setFormData({...formData, [e.target.name]: e.target.value})
-      console.log(formData)
-    }
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    const data = new FormData();
+    data.append('file', file);
+    data.append('upload_preset', 'smartagendapreset');
+    axios
+      .post(`https://api.cloudinary.com/v1_1/smartagend/image/upload`, data)
+      .then((res) => setFormData({ ...formData, avatar: res.data.secure_url }));
+  };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(formData);
+  };
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log('form submitted');
-      profile();
-      setFormData({});
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('form submitted');
+    profile();
+    setFormData({});
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Your Profile</h1>
+    <>
+      <Menu />
+      <form onSubmit={handleSubmit}>
+        <h1>Your Profile</h1>
 
-      <div className="companyNameInfo">
-        <p>Company Name: {company.companyName}</p>
-        {companyNameInputShow && (
-          <input type="text" name="companyName" onChange={handleChange} />
-        )}
-        <div 
-          style={{ border: '1px solid black', borderRadius: 4, width: 40, textAlign: 'center', margin: 'auto',
-                  backgroundColor: 'white', color: '#e88302', borderColor: "orange", cursor: 'pointer' }}
-          onClick={() => setCompanyNameInputShow(!phoneInputShow)}
-        >
-          edit
+        <div className="companyNameInfo">
+          <p>Company Name: {company.companyName}</p>
+          {companyNameInputShow && (
+            <input type="text" name="companyName" onChange={handleChange} />
+          )}
+          <div
+            style={{
+              border: '1px solid black',
+              borderRadius: 4,
+              width: 40,
+              textAlign: 'center',
+              margin: 'auto',
+              backgroundColor: 'white',
+              color: '#e88302',
+              borderColor: 'orange',
+              cursor: 'pointer'
+            }}
+            onClick={() => setCompanyNameInputShow(!phoneInputShow)}
+          >
+            edit
+          </div>
         </div>
-      </div>
 
         <br />
-      
 
-      <div className="emailInfo">
-        <p>Email: {company.email}</p>
-        {emailInputShow && (
-          <input type="email" name="email" onChange={handleChange} />
-        )}
-        <div
-          style={{ border: '1px solid black', borderRadius: 4, width: 40, textAlign: 'center', margin: 'auto',
-                  backgroundColor: 'white', color: '#e88302', borderColor: 'orange', cursor: 'pointer' }}
-          onClick={() => setEmailInputShow(!phoneInputShow)}
-        >
-          edit
-        </div>
+        <div className="emailInfo">
+          <p>Email: {company.email}</p>
+          {emailInputShow && (
+            <input type="email" name="email" onChange={handleChange} />
+          )}
+          <div
+            style={{
+              border: '1px solid black',
+              borderRadius: 4,
+              width: 40,
+              textAlign: 'center',
+              margin: 'auto',
+              backgroundColor: 'white',
+              color: '#e88302',
+              borderColor: 'orange',
+              cursor: 'pointer'
+            }}
+            onClick={() => setEmailInputShow(!phoneInputShow)}
+          >
+            edit
+          </div>
 
           <br />
-          
 
-      <div className="phoneInfo">
-        <p>Phone: {company.phone}</p>
-        {phoneInputShow && (
-          <input type="text" name="phone" onChange={handleChange} />
-        )}
-        <div
-          style={{ border: '1px solid black', borderRadius: 4, width: 40, textAlign: 'center', margin: 'auto',
-                    backgroundColor: 'white', color: '#e88302', borderColor: 'orange', cursor: 'pointer' }}
-          onClick={() => setPhoneInputShow(!phoneInputShow)}
-        >
-          edit
+          <div className="phoneInfo">
+            <p>Phone: {company.phone}</p>
+            {phoneInputShow && (
+              <input type="text" name="phone" onChange={handleChange} />
+            )}
+            <div
+              style={{
+                border: '1px solid black',
+                borderRadius: 4,
+                width: 40,
+                textAlign: 'center',
+                margin: 'auto',
+                backgroundColor: 'white',
+                color: '#e88302',
+                borderColor: 'orange',
+                cursor: 'pointer'
+              }}
+              onClick={() => setPhoneInputShow(!phoneInputShow)}
+            >
+              edit
+            </div>
+          </div>
+
+          <br />
+
+          <button>Submit Changes</button>
         </div>
-      </div>
-
-        <br />
-       
-
-        <button>Submit Changes</button>
-      </div>
-    </form>
+      </form>
+    </>
   );
 };
 

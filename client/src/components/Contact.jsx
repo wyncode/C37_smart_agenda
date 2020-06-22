@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import '../css/contact.css';
+import Menu from './Menu';
 
 const Contact = () => {
   const [apiData, setApiData] = useState({});
@@ -40,19 +41,20 @@ const Contact = () => {
   const address = apiData.address;
   return (
     <>
+      <Menu />
       <h3 className="back" onClick={backClick.bind()}>
         Back
       </h3>
       <div className="contact">
-        <h1>Client Info:</h1>
+        <h1 style={{ color: '#5e8187' }}>Client Info:</h1>
         <h4 className="heading">Name</h4>
-        <h1>{customer}</h1>
+        <h1 style={{ color: '#5e8187' }}>{customer}</h1>
         <h4 className="heading">Email</h4>
-        <h1>{email}</h1>
+        <h1 style={{ color: '#5e8187' }}>{email}</h1>
         <h4 className="heading">Phone</h4>
-        <h1>{phone}</h1>
+        <h1 style={{ color: '#5e8187' }}>{phone}</h1>
         <h4 className="heading">Address</h4>
-        <h1>{address}</h1>
+        <h1 style={{ color: '#5e8187' }}>{address}</h1>
         <Button
           className="button"
           variant="outline-primary"

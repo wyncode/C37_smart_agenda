@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+import Menu2 from './Menu2';
 
 const Signup = () => {
   const { setUser, setLoggedIn } = useContext(AppContext);
@@ -30,58 +31,63 @@ const Signup = () => {
         setPassword('');
         setUsername('');
         localStorage.setItem('token', data.token);
-        history.push("/");
-        window.alert('Account created succesfully.')
+        history.push('/');
+        window.alert('Account created succesfully.');
       })
-      .catch((e) => window.alert( 'Email or password invalid'));
+      .catch((e) => window.alert('Email or password invalid'));
   };
 
   return (
-    <div>
-      <form className="form-group" onSubmit={(e) => signUp(email, password, username, e)}>
-        
-        <div className="form-group">
-          <h4>Create Account</h4>
-          <label htmlFor="companyName">Company </label>
-          <input
-            className="form-control"
-            type="text"
-            name="name"
-            id="name"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email </label>
-          <input
-            className="form-control"
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password </label>
-          <input
-            className="form-control"
-            type="password"
-            name="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-secondary">
-          Sign up
-        </button>
-      </form>
-    </div>
+    <>
+      <Menu2 />
+      <div>
+        <form
+          className="form-group"
+          onSubmit={(e) => signUp(email, password, username, e)}
+        >
+          <div className="form-group">
+            <h4>Create Account</h4>
+            <label htmlFor="companyName">Company </label>
+            <input
+              className="form-control"
+              type="text"
+              name="name"
+              id="name"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email </label>
+            <input
+              className="form-control"
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password </label>
+            <input
+              className="form-control"
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-secondary">
+            Sign up
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ import axios from 'axios';
 import './Calendar.scss';
 import building from '../images/building.png';
 import '../css/logo.css';
-
+import Menu from './Menu';
 
 const Calendar = () => {
   let [company, setCompany] = useState([]);
@@ -48,6 +48,7 @@ const Calendar = () => {
   });
   return (
     <>
+      <Menu />
       <div>
         <br />
         <h2 className="phrase_top">

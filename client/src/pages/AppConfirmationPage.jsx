@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../css/contact.css';
+import Menu2 from '../components/Menu2';
 
 const AppConfirmationPage = () => {
   const [apiData, setApiData] = useState({});
@@ -59,6 +60,7 @@ const AppConfirmationPage = () => {
 
   return (
     <>
+      <Menu2 />
       <div className="confirmation">
         <h1 style={{ fontWeight: 'bold' }}>{company}</h1>
         <h3>Invites You To A {duration} Minute Meeting!</h3>
