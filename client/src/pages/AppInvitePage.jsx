@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-import '../components/styles.css';
+import '../css/contact.css';
 
 const AppInvitePage = () => {
   const [duration, setDuration] = useState('');
@@ -61,22 +62,27 @@ const AppInvitePage = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={(e) => createAppointment(duration, service, e)}>
-        <div className="form-group">
+    <div className="invite">
+      <form
+        autocomplete="off"
+        onSubmit={(e) => createAppointment(duration, service, e)}
+      >
+        <div className="form-group" style={{ paddingLeft: '90px' }}>
           <input
+            className="textbar"
             type="text"
             name="service"
             value={service}
-            placeholder="Appointment title"
+            placeholder="Appointment Title"
             onChange={(e) => setService(e.target.value)}
             required
           />
         </div>
         <div>
-          <p>Select appointment duration</p>
+          <h6>Select Appointment Duration</h6>
           <ToggleButtonGroup type="radio" name="options">
             <ToggleButton
+              className="button"
               value="60"
               onChange={(e) => setDuration(e.target.value)}
               variant="outline-primary"
@@ -84,6 +90,7 @@ const AppInvitePage = () => {
               60 Mins
             </ToggleButton>
             <ToggleButton
+              className="button"
               value="30"
               onClick={(e) => setDuration(e.target.value)}
               variant="outline-primary"
@@ -91,6 +98,7 @@ const AppInvitePage = () => {
               30 Mins
             </ToggleButton>
             <ToggleButton
+              className="button"
               value="15"
               onClick={(e) => setDuration(e.target.value)}
               variant="outline-primary"
@@ -101,18 +109,21 @@ const AppInvitePage = () => {
         </div>
         <br />
         <div>
-          <p>Invitee</p>
-          <p>{customer}</p>
+          <h4 className="heading">Invitee</h4>
+          <h2 style={{ color: '#5e8187' }}>{customer}</h2>
         </div>
         <div>
-          <p>{email}</p>
-          <p>{address}</p>
-          <p>{phone}</p>
+          <h4 className="heading">Email</h4>
+          <h2 style={{ color: '#5e8187' }}>{email}</h2>
+          <h4 className="heading">Address</h4>
+          <h2 style={{ color: '#5e8187' }}>{address}</h2>
+          <h4 className="heading">Phone</h4>
+          <h2 style={{ color: '#5e8187' }}>{phone}</h2>
         </div>
         <div>
-          <button type="submit" className="btn btn-primary">
+          <Button type="submit" className="button">
             Send
-          </button>
+          </Button>
         </div>
       </form>
     </div>

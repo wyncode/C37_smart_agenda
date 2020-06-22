@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import confirmed from '../images/confirmed.svg';
+import '../css/contact.css';
 
 const ConfirmationSuccessfulPage = () => {
   const [apiData, setApiData] = useState({});
@@ -29,8 +30,8 @@ const ConfirmationSuccessfulPage = () => {
   const company = companyName.companyName;
 
   return (
-    <>
-      <h1>Confirmed</h1>
+    <div className="invSuccess">
+      <h1 style={{ fontWeight: 'bold' }}>Confirmed!</h1>
       <p>You are scheduled with {company}</p>
       <hr />
       <h1>{duration} Minute Meeting</h1>
@@ -38,8 +39,8 @@ const ConfirmationSuccessfulPage = () => {
         {moment(date).format('LT')}, {moment(date).format('dddd')},{' '}
         {moment(date).format('MMMM Do, YYYY')}
       </p>
-      <img src={confirmed} alt="Logo" />
-    </>
+      <img className="image" src={confirmed} alt="Logo" />
+    </div>
   );
 };
 

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../css/contact.css';
+import hourglass from '../images/hourglass.svg';
 
 const InviteSuccessPage = () => {
   const [apiData, setApiData] = useState([]);
@@ -35,15 +37,19 @@ const InviteSuccessPage = () => {
   const customer = apiData.customer;
 
   return (
-    <>
+    <div className="success">
       <h1>
         You have successfully created an appointment with{' '}
         {getCustomer(`${customer}`)}!
       </h1>
-      <p>
-        Send the following link to your client: {URL}/confirmation/{id}
+      <p style={{ marginTop: '20px' }}>
+        Send the following link to your client:
+        <p className="link">
+          {URL}/confirmation/{id}
+        </p>
       </p>
-    </>
+      <img className="image" src={hourglass} />
+    </div>
   );
 };
 

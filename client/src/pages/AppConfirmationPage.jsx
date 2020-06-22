@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
-import DatePicker, { setHours, setMinutes } from 'react-datepicker';
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import '../css/contact.css';
 
 const AppConfirmationPage = () => {
   const [apiData, setApiData] = useState({});
@@ -58,21 +59,26 @@ const AppConfirmationPage = () => {
 
   return (
     <>
-      <div>
-        <h1>{company}</h1>
+      <div className="confirmation">
+        <h1 style={{ fontWeight: 'bold' }}>{company}</h1>
         <h3>Invites You To A {duration} Minute Meeting!</h3>
+        <hr />
         <form onSubmit={(e) => createAppointment(date, e)}>
-          <p>Select a day</p>
+          <h2>Select a day</h2>
           <DatePicker
             selected={date}
             minDate={moment().toDate()}
             onChange={(startDate) => setDate(startDate)}
             inline
           />
-          <p>{moment(date).format('dddd')}</p>
-          <p>{moment(date).format('MMMM Do, YYYY')}</p>
-          <p>Select a Time</p>
+          <h8>{moment(date).format('dddd')}</h8>
+          <br />
+          <h8>{moment(date).format('MMMM Do, YYYY')}</h8>
+          <hr />
+          <h2>Select a Time</h2>
+          <h8>Duration: {duration} Minutes</h8>
           <DatePicker
+            style={{ marginTop: '10px' }}
             selected={date}
             onChange={(startDate) => setDate(startDate)}
             showTimeSelect
@@ -82,20 +88,12 @@ const AppConfirmationPage = () => {
             dateFormat="h:mm aa"
             inline
           />
-          {/* <DatePicker
-            selected={date}
-            minDate={moment().toDate()}
-            onChange={(startDate) => setDate(startDate)}
-            inline
-            showTimeSelect
-            showTimeSelectOnly
-            timeIntervals={30}
-            timeCaption="Time"
-            dateFormat="h:mm aa"
-          /> */}
-          <p>{moment(date).format('LT')}</p>
-          <p>Duration: {duration} Minutes</p>
-          <button type="submit">Send</button>
+          <h8>{moment(date).format('LT')}</h8>
+          <div>
+            <button type="submit" className="btn btn-primary button">
+              Send
+            </button>
+          </div>
         </form>
       </div>
     </>
