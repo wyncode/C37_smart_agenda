@@ -18,7 +18,7 @@ export default function Menu() {
   const signedIn = (
     <div>
       <Navbar expand="lg" bg="dark" variant="dark" className="navbar-custom">
-        <Navbar.Brand href="/">S M A R T A G E N D A</Navbar.Brand>
+        <Navbar.Brand href="/companies/me">S M A R T A G E N D A</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
