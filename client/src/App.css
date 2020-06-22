@@ -9,6 +9,8 @@
   display: grid;
   justify-content: center;
   margin-top: 1vh;
+  color: #5e5768;
+  
 }
 
 a.create-account {
@@ -30,4 +32,60 @@ a.create-account {
   color: #5e5768;
   grid-template-columns: 1fr 3fr ;
   grid-template-rows: 100%;
+}
+
+/* Add-client page */
+.add_client{
+  margin: 20px;
+  color: #5e5768;
+
+}
+#list{
+  color: #5e5768;
+ cursor: pointer;
+ width: 70vw
+}
+#letter{
+  color: #0b7785;
+  background: #d9dedf;
+  padding-left: 2vw;
+}
+
+.client_list, .clients_title {
+  display:grid;
+  justify-content:center;
+  
+}
+.clients_title{
+  margin:25px;
+  color: #0b7785;
+}
+.add_client_button{
+  align-items: center;
+}
+
+/*buttons*/
+
+.button {
+  border-color: #e88302;
+  background-color: white;
+  color: #e88302;
+  margin-top: 20px;
+  outline: 0;
+}
+.button:hover {
+  border-color: #e88302;
+  background-color: #e88302;
+  color: white;
+  outline: 0;
+}
+.button:active {
+  border-color: #e88302;
+  background-color: white;
+  color: #e88302;
+  outline: 0;
+}
+.button:checked {
+  background-color: #e88302;
+  outline: 0;
 }

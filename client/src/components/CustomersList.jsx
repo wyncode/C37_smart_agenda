@@ -23,31 +23,39 @@ const CustomersList = () => {
         }
       })
       .then((response) => {
-        setApiData(response.data.sort());
+        const sortedCustomers = response.data.sort(customer => {
+          
+        })
+        setApiData(sortedCustomers);
       });
+
+        
+
   };
   getData();
 
   return (
-    <div>
-      <h1>Clients:</h1>
-      {apiData.map((contact) => {
+    <div className="client_list">
+      <h5 className="clients_title">List of Clients</h5>
+      {apiData.map((contact, index) => {
         if (contact.customer[0] !== letter) {
           letter = contact.customer[0];
 
           return (
-            <div>
-              <p>{letter}</p>
-              <p onClick={handleClick.bind(this, `${contact._id}`)}>
-                {contact.customer}
+            <div  key={index}>
+              <h6 id="letter">{letter.toUpperCase()}</h6>
+              <p id="list" onClick={handleClick.bind(this, `${contact._id}`)}>
+                {contact.customer.toUpperCase()}
               </p>
             </div>
           );
         }
       })}
-      <Button variant="outline-primary" onClick={handleClickNew}>
-        +
-      </Button>{' '}
+      <div>
+        <button  className="btn btn-secondary button" onClick={handleClickNew}>
+          Add new client
+        </button>{' '}
+      </div>
     </div>
   );
 };

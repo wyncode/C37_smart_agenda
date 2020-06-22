@@ -27,13 +27,17 @@ const CreateCustomer = () => {
         setPhone('');
         setEmail('');
         setAddress('');
+        window.alert('Customer added.')
       })
       .catch((e) => console.log(e.message.toString()));
   };
   return (
-    <form onSubmit={(e) => createCustomer(customer, phone, email, address, e)}>
+    <>
+    <h4 className="clients_title">Adding a new client</h4>
+    <form className="form-group" onSubmit={(e) => createCustomer(customer, phone, email, address, e)}>
       <div>
-        <p>Name</p>
+        
+        <p>Customer Name</p>
         <div className="form-group">
           <input
             type="text"
@@ -72,12 +76,13 @@ const CreateCustomer = () => {
           />
         </div>
         <div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-secondary button">
             Send
           </button>
         </div>
       </div>
     </form>
+  </>  
   );
 };
 

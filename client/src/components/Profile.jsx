@@ -31,7 +31,9 @@ const Profile = () => {
       .then(({ data }) => {
         setCompany(data);
       })
-      .catch(console.log);
+      .catch(err => {
+        console.log(err)
+      });
   }, [company]);
 
   // const profile = async () => {

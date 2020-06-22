@@ -3,17 +3,28 @@ import { Nav, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { useHistory } from 'react-router-dom';
+
+import axios from "axios"
 import  { Link } from 'react-router-dom'
 import { AppContext, AppContextProvider } from '../context/AppContext';
 
 export default function Menu() {
   const history = useHistory();
 
-  const Logout = () => {
+  const Logout = async () => {
+    const token = localStorage.getItem("token")
+    await axios({
+      method: "POST",
+      url: `/companies/logout`,
+      headers: {Authorization: `Bearer ${token}`}
+    })
+    .then(({data}) =>{
     localStorage.removeItem('token');
     history.push('/login');
     window.location.reload();
-  };
+  })
+  .catch(e => console.log(e.message.toString()))
+}
 
   // const { setUser, setLoggedIn } = useContext(AppContext);
   const { user, setUser } = useContext(AppContext);
@@ -36,7 +47,7 @@ export default function Menu() {
           </Nav>
           <Nav>
             <Nav.Link href="#" onClick={Logout}>
-              sign out
+              Sign out
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

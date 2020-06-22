@@ -6,6 +6,7 @@ import './Calendar.scss';
 import building from '../images/building.png';
 import '../css/logo.css';
 
+
 const Calendar = () => {
   let [company, setCompany] = useState([]);
   let [appointments, setAppointments] = useState([]);
